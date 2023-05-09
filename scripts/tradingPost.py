@@ -3,23 +3,27 @@ import psycopg2
 con = psycopg2.connect(
     host='localhost',
     database='castlequest',
-    user='castlequest',
-    password='HudenBurger23')
+    user='postgres',
+    password='Hobbit2947')
 
 print("=== Welcome to the Trading Post ===")
-playerName = input("What's your name? ")
-
+    
+    
 #Does the player even exist?
+#create a cursor
+cur = con.cursor()
 
-#It would be nice to show them their inventory.
-#Maybe include the price for each item
+found = False
+while found == False:
+    playerName = input("whats your name??? ")
+#execute a statement
+    with con.cursor() as curs:
+        curs.execute(f"select username from player where LOWER(username) = %s", (playerName.lower(),))
+        for record in curs:
+            found = True 
+            playerName = record[0]
 
-itemToSell = input("What would you like to sell? ")
-
-#Do they have one to sell?
-
-#What is the price?
-
-#Give them the gold
-
-#Take it out of their inventory
+if found:
+    print(f"welcome, {playerName}")
+else:
+    print("who is that")

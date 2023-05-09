@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 superuser = 'postgres'
-superpass = 'goober'
+superpass = 'Hobbit2947'
 
 con = None
 
@@ -72,7 +72,6 @@ def createRoles():
         NOREPLICATION
         PASSWORD 'Woodruff1787'
     ''')
-
 def createDatabase():
     print("\tCreating castlequest database...")
     con.cursor().execute('''
